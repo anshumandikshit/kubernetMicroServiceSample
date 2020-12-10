@@ -1,0 +1,56 @@
+version: '3.4'
+
+services:
+  clientapp.ui:
+    image: ${DOCKER_REGISTRY-}clientappui
+    build:
+      context: .
+      dockerfile: ClientApp.UI/Dockerfile
+    environment:
+      - apiRoutePath__service1Endpoint=http://service1.api/
+      - apiRoutePath__service2Endpoint=http://service2.api/
+      
+
+
+  service1.api :
+    image: ${DOCKER_REGISTRY-}service1API
+    build:
+      context: .
+      dockerfile: Service1.API/Dockerfile
+    environment:
+      - apiRoutePath__workerServiceEndPoint=http://workerService.api/
+      - ConnectionStrings__DefaultConnection=Data Source=db;Initial Catalog=sampleDB;Integrated Security=False;User ID=sa;Password=P(ssw0rd0123);Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;
+    depends_on:
+        - db
+        - workerService.api
+
+  service2.api :
+    image: ${DOCKER_REGISTRY-}service2API
+    build:
+      context: .
+      dockerfile: Service2.API/Dockerfile
+    environment:
+      - apiRoutePath__workerServiceEndPoint=http://workerService.api/
+      - ConnectionStrings__DefaultConnection=Data Source=db;Initial Catalog=sampleDB;Integrated Security=False;User ID=sa;Password=P(ssw0rd0123);Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;
+    depends_on:
+        - db
+        - workerService.api
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    expose:
+     - "1433"
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_SA_PASSWORD=P(ssw0rd0123)
+
+  workerService.api:
+    image: ${DOCKER_REGISTRY-}workerServiceAPI
+    build :
+      context: .
+      dockerfile: WorkerService.Worker/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Data Source=db;Initial Catalog=sampleDB;Integrated Security=False;User ID=sa;Password=P(ssw0rd0123);Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;
+    depends_on:
+        - db
+      
