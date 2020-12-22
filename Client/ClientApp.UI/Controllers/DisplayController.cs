@@ -21,7 +21,7 @@ namespace ClientApp.UI.Controllers
         public async Task<ActionResult> GetResults()
         {
             HttpClient client2 = new HttpClient();
-            var baseAddress2 = Environment.GetEnvironmentVariable("apiRoutePath__service1Endpoint") ?? _config["apiRoutePath:service2Endpoint"];
+            var baseAddress2 = Environment.GetEnvironmentVariable("apiRoutePath__service2Endpoint") ?? _config["apiRoutePath:service2Endpoint"];
             client2.BaseAddress = new Uri(baseAddress2);
             HttpResponseMessage response2 = await client2.GetAsync("api/Service2/getFromService2api");
             var responseBody2 = await response2.Content.ReadAsStringAsync();

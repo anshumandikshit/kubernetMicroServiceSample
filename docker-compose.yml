@@ -1,11 +1,18 @@
-version: '3.4'
+version: '2'
 
 services:
   clientapp.ui:
     image: ${DOCKER_REGISTRY-}clientappui
     build:
       context: .
-      dockerfile: ClientApp.UI/Dockerfile
+      dockerfile: Client/ClientApp.UI/Dockerfile
+    depends_on:
+        - service1.api
+        - service2.api
+    ports:
+        - 44375:443
+        - 8075:80
+
     environment:
       - apiRoutePath__service1Endpoint=http://service1.api/
       - apiRoutePath__service2Endpoint=http://service2.api/
@@ -13,7 +20,7 @@ services:
 
 
   service1.api :
-    image: ${DOCKER_REGISTRY-}service1API
+    image: ${DOCKER_REGISTRY-}service1api
     build:
       context: .
       dockerfile: Service1.API/Dockerfile
@@ -25,7 +32,7 @@ services:
         - workerService.api
 
   service2.api :
-    image: ${DOCKER_REGISTRY-}service2API
+    image: ${DOCKER_REGISTRY-}service2api
     build:
       context: .
       dockerfile: Service2.API/Dockerfile
@@ -45,7 +52,7 @@ services:
      - MSSQL_SA_PASSWORD=P(ssw0rd0123)
 
   workerService.api:
-    image: ${DOCKER_REGISTRY-}workerServiceAPI
+    image: ${DOCKER_REGISTRY-}workerserviceapi
     build :
       context: .
       dockerfile: WorkerService.Worker/Dockerfile
