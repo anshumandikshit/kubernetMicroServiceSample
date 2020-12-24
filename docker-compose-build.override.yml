@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  clientapp.ui:
+    image: acrreg/clientappui:1.0
+    
+      
+
+
+  service1.api :
+    image: acrreg/service1api:1.0
+    
+
+  service2.api :
+    image: acrreg/service2api:1.0
+    
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    
+
+  workerService.api:
+    image: acrreg/workerserviceapi:1.0
+    
+      

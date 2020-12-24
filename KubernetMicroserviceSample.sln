@@ -19,6 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AKS", "AKS", "{73C02108-86B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{E7C853B3-2736-4518-983C-CFBF9C8645E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{305A5C01-D55D-4A65-925B-DA4C040A6EF0}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose-build.override.yml = docker-compose-build.override.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
