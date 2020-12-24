@@ -20,7 +20,7 @@ namespace ClientApp.UI.Controllers
         // GET: DisplayController
         public async Task<ActionResult> GetResults()
         {
-            //Add some comment to test the applications dev branch //check squashing
+            //Add some comment to test the applications dev branch //check squashing //changing in the master branch 
             HttpClient client2 = new HttpClient();
             var baseAddress2 = Environment.GetEnvironmentVariable("apiRoutePath__service2Endpoint") ?? _config["apiRoutePath:service2Endpoint"];
             client2.BaseAddress = new Uri(baseAddress2);
