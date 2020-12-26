@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp.UI", "Client\ClientApp.UI\ClientApp.UI.csproj", "{529C1289-F302-4409-BEBF-60FCBD638D8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AKS", "AKS", "{73C02108-86BA-4AD4-8537-5B6166EB9583}"
+	ProjectSection(SolutionItems) = preProject
+		dashboard-credential.yaml = dashboard-credential.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{E7C853B3-2736-4518-983C-CFBF9C8645E9}"
 EndProject
