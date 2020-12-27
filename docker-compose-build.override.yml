@@ -2,17 +2,17 @@ version: '2'
 
 services:
   clientapp.ui:
-    image: acrreg/clientappui:1.0
+    image: microservicesampleacr.azurecr.io/clientappui:1.0
     
       
 
 
   service1.api :
-    image: acrreg/service1api:1.0
+    image: microservicesampleacr.azurecr.io/service1api:1.0
     
 
   service2.api :
-    image: acrreg/service2api:1.0
+    image: microservicesampleacr.azurecr.io/service2api:1.0
     
 
   db:
@@ -20,6 +20,6 @@ services:
     
 
   workerService.api:
-    image: acrreg/workerserviceapi:1.0
+    image: microservicesampleacr.azurecr.io/workerserviceapi:1.0
     
       

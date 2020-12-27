@@ -17,6 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp.UI", "Client\Clie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AKS", "AKS", "{73C02108-86BA-4AD4-8537-5B6166EB9583}"
 	ProjectSection(SolutionItems) = preProject
+		aks-ui.yml = aks-ui.yml
 		dashboard-credential.yaml = dashboard-credential.yaml
 	EndProjectSection
 EndProject
