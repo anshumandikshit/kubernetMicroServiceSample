@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-sample-ui
+spec:
+  selector:
+    component: sample-ui
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: https
+  - port: 443 
+    targetPort: 443
+    protocol: TCP
+    name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-sample-ui
+spec:
+  replicas: 5
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      component: sample-ui
+  template:
+    metadata:
+      labels:
+        component: sample-ui
+    spec:
+      containers:
+        - name: sample-ui
+          image: microservicesampleacr.azurecr.io/clientappui:1.0
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_URLS
+              value: https://+:80;http://+443
+            - name: base64pfxfile
+              valueFrom:
+                secretKeyRef:
+                  name: base64pfxfile
+                  key: file
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+              valueFrom: 
+                secretKeyRef:
+                  name: pfx-password
+                  key: pwd
+            - name: apiRoutePath__service1Endpoint
+              value: http://svc-api-service1
+            - name: apiRoutePath__service2Endpoint
+              value: http://svc-api-service2
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources:
+            limits:
+              cpu: "0.15"
+      imagePullSecrets:
+        - name: acr-secret
