@@ -10,11 +10,8 @@ spec:
   - port: 80
     targetPort: 80
     protocol: TCP
-    name: https
-  - port: 443 
-    targetPort: 443
-    protocol: TCP
     name: http
+  
 
 ---
 apiVersion: apps/v1
@@ -44,21 +41,11 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
             - name: ASPNETCORE_URLS
-              value: https://+:80;http://+443
-            - name: base64pfxfile
-              valueFrom:
-                secretKeyRef:
-                  name: base64pfxfile
-                  key: file
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-              valueFrom: 
-                secretKeyRef:
-                  name: pfx-password
-                  key: pwd
+              value: http://+:80;
             - name: apiRoutePath__service1Endpoint
-              value: http://svc-api-service1
+              value: http://svc-sample-service1api
             - name: apiRoutePath__service2Endpoint
-              value: http://svc-api-service2
+              value: http://svc-sample-service2api
           ports:
             - containerPort: 80
             - containerPort: 443
