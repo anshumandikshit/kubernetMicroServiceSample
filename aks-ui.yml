@@ -19,7 +19,7 @@ kind: Deployment
 metadata:
   name: dep-sample-ui
 spec:
-  replicas: 5
+  replicas: 1
   minReadySeconds: 5
   strategy:
     type: RollingUpdate
@@ -50,7 +50,23 @@ spec:
             - containerPort: 80
             - containerPort: 443
           resources:
+            requests:
+              cpu: 250m
             limits:
-              cpu: "0.15"
+              cpu: 500m
       imagePullSecrets:
         - name: acr-secret
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-sample-ui
+spec:
+  maxReplicas: 10 # define max replica count
+  minReplicas: 1  # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: dep-sample-ui
+  targetCPUUtilizationPercentage: 50 # target CPU utilization
