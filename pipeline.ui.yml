@@ -53,4 +53,5 @@ stages:
         buildContext: $(Build.SourcesDirectory)/KubernetMicroserviceSample
         tags: |
           $(tag)
+
       
