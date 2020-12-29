@@ -11,7 +11,7 @@ resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: '86a9c183-a3b0-48e6-931a-4358122f8d06'
+  dockerRegistryServiceConnection: '4da46c03-07db-47d9-b8d7-293213f999ae'
   imageRepository: 'clientappui'
   containerRegistry: 'microservicesampleacr.azurecr.io'
   dockerfilePath: 'KubernetMicroserviceSample/Client/ClientApp.UI/Dockerfile'
