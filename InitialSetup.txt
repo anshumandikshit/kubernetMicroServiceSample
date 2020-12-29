@@ -38,3 +38,5 @@ then check for VPA for the nodes we are using
 
 getting inside the K8s pod 
 kubectl exec --stdin --tty <Pod name>  -- /bin/bash
+
+curl -Is $url | grep HTTP | cut -d ' ' -f2
