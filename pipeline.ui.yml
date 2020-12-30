@@ -36,7 +36,7 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        buildContext: $(Build.SourcesDirectory)/KubernetMicroserviceSample
+        buildContext: $(Build.SourcesDirectory)/KubernetesMicroserviceSample
         tags: |
           $(tag)
 
@@ -50,7 +50,7 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        buildContext: $(Build.SourcesDirectory)/KubernetMicroserviceSample
+        buildContext: $(Build.SourcesDirectory)/KubernetesMicroserviceSample
         tags: |
           $(tag)
     
