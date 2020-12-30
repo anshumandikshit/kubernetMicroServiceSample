@@ -36,7 +36,7 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        buildContext: $(Build.SourcesDirectory)/kubernetMicroServiceSample
+        buildContext: '$(Build.SourcesDirectory)/kubernetMicroServiceSample'
         tags: |
           $(tag)
 
