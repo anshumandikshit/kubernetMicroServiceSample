@@ -49,9 +49,9 @@ stages:
         command: push
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(containerRegistry)
         buildContext: $(Build.SourcesDirectory)/KubernetMicroserviceSample
         tags: |
           $(tag)
-
+    
       
