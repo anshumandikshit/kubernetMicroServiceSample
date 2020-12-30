@@ -11,7 +11,7 @@ resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: '4da46c03-07db-47d9-b8d7-293213f999ae'
+  dockerRegistryServiceConnection: 'sample-acr-svc-principal'
   imageRepository: 'clientappui'
   containerRegistry: 'microservicesampleacr.azurecr.io'
   dockerfilePath: 'KubernetMicroserviceSample/Client/ClientApp.UI/Dockerfile'
@@ -49,7 +49,7 @@ stages:
         command: push
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(containerRegistry)
+        containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/KubernetMicroserviceSample
         tags: |
           $(tag)
