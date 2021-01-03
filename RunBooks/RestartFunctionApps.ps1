@@ -1,6 +1,6 @@
 #parameters
 #checking source control
-
+# adding keyvault checks
 param (
     [string][Parameter(Mandatory=$false)]$ResourceGrpName='dev-rg' ,
     [string][Parameter(Mandatory=$false)]$KeyVaultName='sample-dev-kv',
