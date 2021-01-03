@@ -69,6 +69,6 @@ foreach ($functionapp in $Resources)
     "foreach resource..."
     "restarting functionapps"
     Restart-AzFunctionApp -Name $functionapp.ResourceName -ResourceGroupName $ResourceGrpName -SubscriptionId $subscriptionId
-    "functionapps named  restarted"
+    "functionapps named $($functionapp.ResourceName) restarted"
   #Write-Output ($functionapp.ResourceName + " of type " +  $functionapp.ResourceType)
 }
