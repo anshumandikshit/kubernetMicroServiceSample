@@ -35,14 +35,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose-build.override.yml = docker-compose-build.override.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RunBooks", "RunBooks", "{4F0CF9FB-C033-47E9-BA30-483F092B90E5}"
-	ProjectSection(SolutionItems) = preProject
-		.keep = .keep
-		RestartFunctionapps.ps1 = RestartFunctionapps.ps1
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Runbooks", "RunBooks\Common.Runbooks\Common.Runbooks.csproj", "{CDF744C9-90D8-4A83-9A78-778DAD92883D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,17 +61,12 @@ Global
 		{529C1289-F302-4409-BEBF-60FCBD638D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529C1289-F302-4409-BEBF-60FCBD638D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{529C1289-F302-4409-BEBF-60FCBD638D8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDF744C9-90D8-4A83-9A78-778DAD92883D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDF744C9-90D8-4A83-9A78-778DAD92883D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDF744C9-90D8-4A83-9A78-778DAD92883D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDF744C9-90D8-4A83-9A78-778DAD92883D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{529C1289-F302-4409-BEBF-60FCBD638D8D} = {5A0C2969-015E-4283-968A-0C1BE1E810CF}
-		{CDF744C9-90D8-4A83-9A78-778DAD92883D} = {4F0CF9FB-C033-47E9-BA30-483F092B90E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEC9F785-D381-4949-AB35-C65E871A721A}
