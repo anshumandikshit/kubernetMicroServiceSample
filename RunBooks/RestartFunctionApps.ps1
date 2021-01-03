@@ -1,5 +1,6 @@
 #parameters
 #checking source control
+
 param (
     [string][Parameter(Mandatory=$false)]$ResourceGrpName='dev-rg' ,
     [string][Parameter(Mandatory=$false)]$KeyVaultName='sample-dev-kv',
@@ -8,6 +9,7 @@ param (
 
 Import-Module Az.Functions
 
+"Initialize jobs..."
 $connectionName = "AzureRunAsConnection" 
 
 try
