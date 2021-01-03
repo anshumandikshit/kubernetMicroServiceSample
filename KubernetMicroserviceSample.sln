@@ -35,9 +35,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose-build.override.yml = docker-compose-build.override.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RunBooks", "RunBooks", "{752a9d64-4d8d-11eb-ae93-0242ac130002}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RunBooks", "RunBooks", "{752A9D64-4D8D-11EB-AE93-0242AC130002}"
+	ProjectSection(SolutionItems) = preProject
+		RunBooks\RestartFunctionApps.ps1 = RunBooks\RestartFunctionApps.ps1
+	EndProjectSection
 	ProjectSection(RunBooks) = preProject
-		.keep=.keep
+		.keep = .keep
+		RestartFunctionApps.ps1 = RestartFunctionApps.ps1
 	EndProjectSection
 EndProject
 Global
