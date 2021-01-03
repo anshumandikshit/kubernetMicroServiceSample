@@ -8,6 +8,7 @@ param (
 )
 
 Import-Module Az.Functions
+Import-Module AzureRM.KeyVault
 
 "Initialize jobs..."
 $connectionName = "AzureRunAsConnection" 
