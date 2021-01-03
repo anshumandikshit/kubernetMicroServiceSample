@@ -1,0 +1,57 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - KubernetMicroserviceSample/Client/ClientApp.UI/*
+    - KubernetMicroserviceSample/aks-ui.yml
+
+resources:
+- repo: self
+
+variables:
+  dockerRegistryServiceConnection: 'sample-acr-svc-principal'
+  imageRepository: 'clientappui'
+  containerRegistry: 'microservicesampleacr.azurecr.io'
+  dockerfilePath: 'Client/ClientApp.UI/Dockerfile'
+  tag: '$(Build.BuildId)'
+  deploymentFile: 'aks-ui.yml'
+  trivyVersion: 0.12.0
+
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build the container image
+      inputs:
+        command: build
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        buildContext: 'kubernetMicroServiceSample'
+        tags: |
+          $(tag)
+
+    - script: |
+        sudo docker tag $(imageRepository):$(tag) $(containerRegistry)/$(imageRepository):$(tag)
+      displayName: 'Tag container image before push'
+    - task: Docker@2
+      displayName: Push the image to container registry
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/kubernetMicroServiceSample
+        tags: |
+          $(tag)
+    
+      

@@ -10,11 +10,8 @@ spec:
   - port: 80
     targetPort: 80
     protocol: TCP
-    name: https
-  - port: 443 
-    targetPort: 443
-    protocol: TCP
     name: http
+  
 
 ---
 apiVersion: apps/v1
@@ -22,7 +19,7 @@ kind: Deployment
 metadata:
   name: dep-sample-ui
 spec:
-  replicas: 5
+  replicas: 1
   minReadySeconds: 5
   strategy:
     type: RollingUpdate
@@ -39,31 +36,37 @@ spec:
     spec:
       containers:
         - name: sample-ui
-          image: microservicesampleacr.azurecr.io/clientappui:1.0
+          image: microservicesampleacr.azurecr.io/clientappui:#{Build.BuildId}#
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
             - name: ASPNETCORE_URLS
-              value: https://+:80;http://+443
-            - name: base64pfxfile
-              valueFrom:
-                secretKeyRef:
-                  name: base64pfxfile
-                  key: file
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-              valueFrom: 
-                secretKeyRef:
-                  name: pfx-password
-                  key: pwd
+              value: http://+:80;
             - name: apiRoutePath__service1Endpoint
-              value: http://svc-api-service1
+              value: http://svc-sample-service1api
             - name: apiRoutePath__service2Endpoint
-              value: http://svc-api-service2
+              value: http://svc-sample-service2api
           ports:
             - containerPort: 80
             - containerPort: 443
           resources:
+            requests:
+              cpu: 250m
             limits:
-              cpu: "0.15"
+              cpu: 500m
       imagePullSecrets:
         - name: acr-secret
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-sample-ui
+spec:
+  maxReplicas: 10 # define max replica count
+  minReplicas: 1  # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: dep-sample-ui
+  targetCPUUtilizationPercentage: 50 # target CPU utilization

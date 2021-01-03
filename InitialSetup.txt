@@ -20,7 +20,23 @@ kubectl get secret -n kubernetes-dashboard $(kubectl get serviceaccount admin-us
 az acr create --resource-group dev-rg --name microservicesampleacr --sku Basic
 
 
+az aks update --resource-group dev-rg --name KubernetMicroServiceSample --enable-cluster-autoscaler --min-count 1 --max-count 5
+
+
+
+
 
 -------
-
+K8s Pod autoscaler
 -------
+install metrics service in K8s Cluster
+
+then write the yaml file for POD autoscalling
+
+then check by using kubectl get pods
+then check for VPA for the nodes we are using 
+
+getting inside the K8s pod 
+kubectl exec --stdin --tty <Pod name>  -- /bin/bash
+
+curl -Is $url | grep HTTP | cut -d ' ' -f2
