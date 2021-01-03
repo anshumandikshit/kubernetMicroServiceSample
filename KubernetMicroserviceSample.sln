@@ -35,6 +35,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose-build.override.yml = docker-compose-build.override.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RunBooks", "RunBooks", "{752a9d64-4d8d-11eb-ae93-0242ac130002}"
+	ProjectSection(RunBooks) = preProject
+		.keep=.keep
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
