@@ -1,3 +1,10 @@
+#parameters
+param (
+    [string][Parameter(Mandatory=$false)]$ResourceGrpName='dev-rg' ,
+    [string][Parameter(Mandatory=$false)]$KeyVaultName='sample-dev-kv',
+    [string][Parameter(Mandatory=$false)]$KVKeyName='SubscriptionId'
+)
+
 Import-Module Az.Functions
 
 $connectionName = "AzureRunAsConnection" 
@@ -44,15 +51,15 @@ catch{
     }
 }
 
-$subscriptionId =(Get-AzureKeyVaultSecret -VaultName '' -Name 'KeyName').SecretValueText
+$subscriptionId =(Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name $KVKeyName).SecretValueText
 "finding Resources..."
-$Resources = Find-AzureRmResource -ResourceGroupNameContains dev-rg | Where-Object {($_.ResourceName -like "*-fa") -and ($_.ResourceType -eq 'Microsoft.Web/sites')} | Select ResourceName, ResourceType
+$Resources = Find-AzureRmResource -ResourceGroupNameContains $ResourceGrpName | Where-Object {($_.ResourceName -like "*-fa") -and ($_.ResourceType -eq 'Microsoft.Web/sites')} | Select ResourceName, ResourceType
 " Resources found"
 foreach ($functionapp in $Resources)
 {
     "foreach resource..."
     "restarting functionapps"
-    Restart-AzFunctionApp -Name $functionapp.ResourceName -ResourceGroupName dev-rg -SubscriptionId $subscriptionId
+    Restart-AzFunctionApp -Name $functionapp.ResourceName -ResourceGroupName $ResourceGrpName -SubscriptionId $subscriptionId
     "restarted functionapps"
   #Write-Output ($functionapp.ResourceName + " of type " +  $functionapp.ResourceType)
 }
