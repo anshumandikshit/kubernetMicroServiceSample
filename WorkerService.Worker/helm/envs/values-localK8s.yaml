@@ -1,0 +1,25 @@
+image:
+  repository: workerservice     
+  tag: local-debug
+
+ingress:
+  enabled: true
+  host: local.kubernetes.test
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+
+env:
+  ASPNETCORE_ENVIRONMENT: Development
+
+debug:
+  enabled: true
+  port: 4020

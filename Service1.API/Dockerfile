@@ -4,9 +4,11 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+EXPOSE 4020
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
+RUN ls
 COPY ["Service1.API/Service1.API.csproj", "Service1.API/"]
 RUN dotnet restore "Service1.API/Service1.API.csproj"
 COPY . .

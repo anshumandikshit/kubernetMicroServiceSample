@@ -1,0 +1,27 @@
+image:
+  repository: api1     
+  tag: local-debug
+
+ingress:
+  enabled: true
+  host: local.kubernetes.test
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+
+env:
+  ASPNETCORE_ENVIRONMENT: Development
+  WorkerService:
+   BaseUrl: "http://workerservice.local-k8.svc.cluster.local"
+
+debug:
+  enabled: true
+  port: 4020

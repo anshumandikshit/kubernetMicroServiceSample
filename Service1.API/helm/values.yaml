@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/your-org/api1
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  host: ""
+  path: /api1(/|$)(.*)
+  className: nginx
+
+resources: {}
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+env:
+  ASPNETCORE_ENVIRONMENT: Development
+  WorkerService:
+   BaseUrl: "http://workerservice.default.svc.cluster.local"
+
+debug:
+  enabled: false
+  port: 80
